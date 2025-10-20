@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday!</title>
+<style>
+  /* === Global Styles === */
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: #0f0f0f;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* === Container === */
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+  }
+
+  /* === Background Hearts Animation === */
+  .heart {
+    position: absolute;
+    color: #ff6b81;
+    font-size: 1.2rem;
+    animation: float 6s linear infinite;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    50% { transform: translateY(-200px) rotate(180deg); opacity: 0.7; }
+    100% { transform: translateY(-400px) rotate(360deg); opacity: 0; }
+  }
+
+  /* === Greeting Message === */
+  .greeting {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+
+  /* === Typewriter Text === */
+  .typewriter {
+    display: inline-block;
+    font-size: 1.5rem;
+    border-right: 2px solid #ff6b81;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+    animation: typing 4s steps(50, end) forwards, blink 0.75s step-end infinite;
+  }
+
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+
+  @keyframes blink {
+    0%, 100% { border-color: transparent; }
+    50% { border-color: #ff6b81; }
+  }
+
+  /* === Interactive Sections === */
+  .section {
+    background: #1a1a1a;
+    padding: 30px;
+    margin: 20px 0;
+    border-radius: 20px;
+    width: 80%;
+    max-width: 600px;
+    cursor: pointer;
+    transition: transform 0.4s ease, background 0.4s ease;
+  }
+
+  .section:hover {
+    transform: scale(1.05);
+    background: #2c2c2c;
+  }
+
+  .section-content {
+    display: none;
+    margin-top: 10px;
+    font-size: 1.2rem;
+    color: #ffb6c1;
+  }
+
+  .section.active .section-content {
+    display: block;
+    animation: fadeIn 1s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* === Footer === */
+  footer {
+    margin-top: 40px;
+    font-size: 0.9rem;
+    color: #888;
+  }
+
+  /* === Button === */
+  .reveal-btn {
+    background: #ff6b81;
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 20px;
+    transition: background 0.3s ease;
+  }
+
+  .reveal-btn:hover {
+    background: #ff8499;
+  }
+
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="greeting">Happy Birthday, <span id="name">[Her Name]</span>! 🎉</div>
+  <div class="typewriter" id="typewriter-text">Wishing you a day filled with love, laughter, and unforgettable memories 💖</div>
+
+  <!-- Interactive Sections -->
+  <div class="section" onclick="toggleSection(this)">
+    🎁 Surprise 1
+    <div class="section-content">
+      You are the sunshine in my life, lighting up every day with your smile. ☀️
+    </div>
+  </div>
+
+  <div class="section" onclick="toggleSection(this)">
+    🎂 Surprise 2
+    <div class="section-content">
+      Every moment with you feels magical, and I hope this year brings you endless joy. ✨
+    </div>
+  </div>
+
+  <div class="section" onclick="toggleSection(this)">
+    💌 Surprise 3
+    <div class="section-content">
+      Just wanted to remind you how deeply you are loved, today and always. 💖
+    </div>
+  </div>
+
+  <button class="reveal-btn" onclick="revealMessage()">Reveal My Special Message</button>
+  <div class="section-content" id="final-message" style="margin-top:20px; font-size:1.3rem;"></div>
+</div>
+
+<!-- Hearts Animation Script -->
+<script>
+  // Generate random hearts in background
+  const colors = ['#ff6b81', '#ff85a2', '#ff99bb'];
+  for(let i=0; i<50; i++){
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = 4 + Math.random() * 3 + 's';
+    heart.style.fontSize = 12 + Math.random() * 24 + 'px';
+    heart.innerHTML = '❤️';
+    document.body.appendChild(heart);
+  }
+
+  // Typewriter text already handled via CSS
+  // Interactive Sections
+  function toggleSection(el){
+    el.classList.toggle('active');
+  }
+
+  // Reveal final message
+  function revealMessage(){
+    const msg = "You are my heart and my world, and I wish for all your dreams to come true today and always. Love you endlessly 💕";
+    document.getElementById('final-message').innerText = msg;
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
